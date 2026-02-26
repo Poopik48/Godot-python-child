@@ -88,7 +88,6 @@ tile_data = PoolIntArray( 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 131089, 1, 0, 1
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 499, 198 )
-scale = Vector2( 5, 5 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( 857, 195 )

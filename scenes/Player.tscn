@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://KinematicBody2D.py" type="Script" id=1]
+[ext_resource path="res://scripts(puthon)/KinematicBody2D.py" type="Script" id=1]
 [ext_resource path="res://assets/sheets/DinoSprites - tard.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=22]

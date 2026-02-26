@@ -2,60 +2,33 @@ from godot import exposed
 from godot import *
 
 @exposed
-class Player(KinematicBody2D):
+class Enemy(KinematicBody2D):
 
-	speed: int = 200
-	jump_force: int = -350
-	gravity: int = 900
-	death_y: int = 800
-	
-	velocity: Vector2 = Vector2()
-	
+	speed = 100
+	direction = 1 
+	velocity = Vector2()
+
 	def _ready(self):
-		#instantiete
-		self.sprite = self.get_node("AnimatedSprite")
-	
+		self.sprite = self.get_node("AnimatedSprite") 
+		self.player = self.get_tree().get_root().get_node("res://scenes/Player.tscn")
+
 	def _physics_process(self, delta):
-		direction = 0
-		#направление и инпут 
-		if Input.is_action_pressed("ui_right"):
-			direction += 1
-		if Input.is_action_pressed("ui_left"):
-			direction -= 1
-	
-		#run
-		self.velocity.x = direction * self.speed
-	
-		#verticale gravity
-		self.velocity.y += self.gravity * delta
-	
-		#jump
-		if self.is_on_floor():
-			if Input.is_action_just_pressed("ui_accept"):
-				self.velocity.y = self.jump_force
-				
-	
-		#move and slide from gd
+		self.velocity.x = self.speed * self.direction
+		self.velocity.y += 900 * delta  
+		
 		self.velocity = self.move_and_slide(self.velocity, Vector2.UP)
-	
-		#flip H
-		if direction != 0:
-			self.sprite.flip_h = direction < 0
-	
-		#anim_player
-		if not self.is_on_floor():
-			self.sprite.play("jump")
-		elif direction != 0:
-			self.sprite.play("run")
-		else:
-			self.sprite.play("idle")
-	
-		#death when fall
-		if self.position.y > self.death_y:
-			self.reload_scene()
+		
+		if self.is_on_wall():
+			self.direction *= -1
+			self.sprite.flip_h = self.direction < 0
 			
 		
-	#death instans
-	def reload_scene(self):
-		current_scene = self.get_tree().get_current_scene()
-		self.get_tree().reload_current_scene()
+		if self.player:
+			if self.get_collision_with_player():
+				self.player.reload_scene()
+
+	def get_collision_with_player(self):
+		#AABB
+		return self.get_node("CollisionShape2D").get_global_rect().intersects(
+			self.player.get_node("CollisionShape2D").get_global_rect()
+		)

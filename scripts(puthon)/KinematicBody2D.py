@@ -50,12 +50,12 @@ class Player(KinematicBody2D):
 		else:
 			self.sprite.play("idle")
 	
-		#death
+		#death when fall
 		if self.position.y > self.death_y:
 			self.reload_scene()
 			
 		
-	
+	#death instans
 	def reload_scene(self):
 		current_scene = self.get_tree().get_current_scene()
 		self.get_tree().reload_current_scene()

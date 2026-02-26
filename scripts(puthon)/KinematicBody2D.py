@@ -4,11 +4,12 @@ from godot import *
 @exposed
 class Player(KinematicBody2D):
 
-	speed = 200
-	jump_force = -350
-	gravity = 900
+	speed: int = 200
+	jump_force: int = -350
+	gravity: int = 900
+	death_y: int = 800
 	
-	velocity = Vector2()
+	velocity: Vector2 = Vector2()
 	
 	def _ready(self):
 		#instantiete
@@ -48,3 +49,13 @@ class Player(KinematicBody2D):
 			self.sprite.play("run")
 		else:
 			self.sprite.play("idle")
+	
+		#death
+		if self.position.y > self.death_y:
+			self.reload_scene()
+			
+		
+	
+	def reload_scene(self):
+		current_scene = self.get_tree().get_current_scene()
+		self.get_tree().reload_current_scene()

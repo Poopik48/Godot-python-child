@@ -76,10 +76,6 @@ position = Vector2( 520, 296.5 )
 scale = Vector2( 15.9063, 8.95313 )
 texture = ExtResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 490, 220 )
-scale = Vector2( 5, 5 )
-
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 4, 4 )
 tile_set = SubResource( 3 )
@@ -87,4 +83,8 @@ cell_size = Vector2( 16, 16 )
 compatibility_mode = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( 65552, 1, 0, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 131088, 2, 0, 131091, 2, 0, 131092, 2, 0, 131093, 2, 0, 196623, 1, 0, 262157, 1, 0, 262159, 2, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327691, 1, 0, 327693, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393227, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0 )
+tile_data = PoolIntArray( 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 131089, 1, 0, 131091, 2, 0, 131092, 2, 0, 131093, 2, 0, 196623, 1, 0, 196625, 2, 0, 262157, 1, 0, 262159, 2, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327691, 1, 0, 327693, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393227, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458770, 1, 0, 524306, 2, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 499, 198 )
+scale = Vector2( 5, 5 )
